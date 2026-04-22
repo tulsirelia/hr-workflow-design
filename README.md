@@ -119,7 +119,7 @@ A mock API layer is used to simulate backend behavior:
 * Workflow simulation panel displaying execution steps
 * Clean and modular project structure
 
-While building this project, I referred to online resources and documentation. I focused on understanding core concepts such as React Flow, state management, and component architecture, and ensured that I can explain, modify, and extend every part of the system.
+While building this project, I had to refer some online resources and documentation and ensured that I can explain, modify, and extend every part of the system.
 ---
 
 ## What I Would Add With More Time
