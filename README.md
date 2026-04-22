@@ -1,8 +1,8 @@
-![alt text](image.png) 
-
 # HR Workflow Designer
 
 ---
+
+![alt text](image.png) 
 
 ## Architecture
 
