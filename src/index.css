@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg-primary: #0d0f14;
+  --bg-secondary: #13161d;
+  --bg-panel: #1a1d27;
+  --bg-card: #1f2333;
+  --bg-hover: #252a3a;
+  --border: #2a2f45;
+  --border-light: #333850;
+  --accent: #f97316;
+  --accent-dim: rgba(249,115,22,0.15);
+  --accent-border: rgba(249,115,22,0.4);
+  --blue: #3b82f6;
+  --blue-dim: rgba(59,130,246,0.15);
+  --green: #22c55e;
+  --green-dim: rgba(34,197,94,0.12);
+  --purple: #a855f7;
+  --purple-dim: rgba(168,85,247,0.12);
+  --yellow: #eab308;
+  --yellow-dim: rgba(234,179,8,0.12);
+  --red: #ef4444;
+  --text-primary: #e8eaf0;
+  --text-secondary: #8b93a8;
+  --text-muted: #555e78;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); overflow: hidden; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+
+.react-flow__background { background: var(--bg-primary) !important; }
+.react-flow__edge-path { stroke: #333850; stroke-width: 2; }
+.react-flow__edge.selected .react-flow__edge-path { stroke: var(--accent); }
+.react-flow__handle { width: 10px !important; height: 10px !important; border: 2px solid #333850 !important; background: #1f2333 !important; transition: all 0.2s; }
+.react-flow__handle:hover { background: var(--accent) !important; border-color: var(--accent) !important; transform: scale(1.3); }
+.react-flow__controls { background: #1a1d27 !important; border: 1px solid #2a2f45 !important; border-radius: 10px !important; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important; }
+.react-flow__controls-button { background: #1a1d27 !important; border-color: #2a2f45 !important; color: #8b93a8 !important; fill: #8b93a8 !important; }
+.react-flow__controls-button:hover { background: #252a3a !important; color: #e8eaf0 !important; fill: #e8eaf0 !important; }
+.react-flow__minimap { background: #1a1d27 !important; border: 1px solid #2a2f45 !important; border-radius: 10px !important; }
+.react-flow__attribution { display: none; }
+.react-flow__node { padding: 0 !important; }
+.react-flow__node.selected > div { box-shadow: 0 0 0 2px #f97316, 0 8px 30px rgba(249,115,22,0.2) !important; }
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2a2f45; border-radius: 10px; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.fade-in { animation: fadeIn 0.2s ease forwards; }
+.slide-in { animation: slideIn 0.2s ease forwards; }
+
+.workflow-node { background: #1f2333; border: 1.5px solid #2a2f45; border-radius: 12px; min-width: 180px; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+.workflow-node:hover { border-color: #333850; box-shadow: 0 8px 24px rgba(0,0,0,0.4); transform: translateY(-1px); }
+
+.node-palette-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; border: 1px solid #2a2f45; background: #1f2333; cursor: grab; transition: all 0.2s; user-select: none; }
+.node-palette-item:hover { border-color: #333850; background: #252a3a; transform: translateX(3px); }
+.node-palette-item:active { cursor: grabbing; }
+
+.form-input { width: 100%; background: #0d0f14; border: 1px solid #2a2f45; border-radius: 7px; padding: 8px 11px; color: #e8eaf0; font-family: 'DM Sans', sans-serif; font-size: 13px; transition: border-color 0.2s; outline: none; }
+.form-input:focus { border-color: #f97316; }
+.form-input::placeholder { color: #555e78; }
+select.form-input option { background: #1a1d27; }
+textarea.form-input { resize: vertical; min-height: 60px; }
+
+.form-label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #555e78; margin-bottom: 5px; }
+
+.btn-primary { background: #f97316; color: white; border: none; border-radius: 7px; padding: 8px 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+.btn-primary:hover { background: #ea6c0a; transform: translateY(-1px); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.btn-ghost { background: transparent; color: #8b93a8; border: 1px solid #2a2f45; border-radius: 7px; padding: 8px 14px; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+.btn-ghost:hover { border-color: #333850; color: #e8eaf0; background: #252a3a; }
+
+.btn-icon { background: transparent; color: #8b93a8; border: 1px solid #2a2f45; border-radius: 7px; padding: 7px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; }
+.btn-icon:hover { border-color: #333850; color: #e8eaf0; background: #252a3a; }
+
+.badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+
+.toggle-switch { position: relative; width: 36px; height: 20px; flex-shrink: 0; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+.toggle-track { position: absolute; inset: 0; background: #333850; border-radius: 20px; cursor: pointer; transition: background 0.2s; }
+.toggle-track::after { content: ''; position: absolute; width: 14px; height: 14px; border-radius: 50%; background: white; top: 3px; left: 3px; transition: transform 0.2s; }
+.toggle-switch input:checked + .toggle-track { background: #f97316; }
+.toggle-switch input:checked + .toggle-track::after { transform: translateX(16px); }
+
+.log-step { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #2a2f45; animation: fadeIn 0.3s ease forwards; }
+.log-step:last-child { border-bottom: none; }
+.spinner { width: 16px; height: 16px; border: 2px solid #2a2f45; border-top-color: #f97316; border-radius: 50%; animation: spin 0.8s linear infinite; }
