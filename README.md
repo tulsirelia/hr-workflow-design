@@ -1,195 +1,137 @@
-# 🧩 HR Workflow Designer (React + React Flow)
+![alt text](image.png) 
 
-## 📌 Overview
-
-This project is a **visual workflow designer** that allows HR administrators to create, configure, and simulate internal workflows such as onboarding, leave approvals, and automated processes.
-
-The application provides a **drag-and-drop canvas** where users can design workflows using different node types and test their execution in a sandbox environment.
+# HR Workflow Designer
 
 ---
 
-## 🚀 Features
+## Architecture
 
-### 1. Workflow Canvas
+The application is designed as a **modular, scalable frontend system** with clear separation of concerns.
 
-* Drag-and-drop interface for building workflows
-* Connect nodes with edges to define flow
-* Select and delete nodes/edges
-* Interactive canvas with zoom, pan, and minimap
+### Folder Structure
 
-### 2. Custom Node Types
-
-* **Start Node** – Entry point of workflow
-* **Task Node** – Human task (e.g., document collection)
-* **Approval Node** – Approval step with role-based logic
-* **Automated Node** – System-triggered actions
-* **End Node** – Workflow completion
-
-### 3. Dynamic Node Configuration
-
-* Context-based form panel for editing selected node
-* Controlled components for real-time updates
-* Supports dynamic fields (e.g., action parameters for automated nodes)
-
-### 4. Mock API Integration
-
-* `GET /automations` → Fetch available automated actions
-* `POST /simulate` → Simulate workflow execution
-
-### 5. Workflow Simulation
-
-* Serializes workflow graph (nodes + edges)
-* Displays step-by-step execution output
-* Provides a sandbox environment for testing workflows
-
----
-
-## 🏗️ Architecture
-
-The application is designed with **clear separation of concerns**:
-
-```text
+```
 src/
-  components/      → UI components (Canvas, Panels, Sidebar)
+  components/      → UI components (Canvas, Panels, Sidebar, Toolbar)
   nodes/           → Custom node implementations
   store/           → Global state management (Zustand)
   api/             → Mock API layer
-  types/           → TypeScript interfaces and types
+  types/           → TypeScript interfaces for workflow nodes
+```
+
+### Key Architectural Decisions
+
+* **React Flow** is used to manage the workflow graph (nodes and edges)
+* **Zustand** is used for global state management to avoid prop drilling
+* **Custom node types** are implemented for flexibility and scalability
+* **Separation of logic and UI**:
+
+  * Canvas handles rendering
+  * Store manages state
+  * Components handle interaction
+
+### Data Flow
+
+```
+User Action → Event Handler → Zustand Store Update → React Flow Re-render
 ```
 
 ---
 
-## 🧠 Core Concepts
+## How to Run
 
-### 1. Graph-Based Workflow
+### Prerequisites
 
-The workflow is represented as a **graph**:
+* Node.js (v16 or above)
+* npm
 
-* Nodes → workflow steps
-* Edges → connections between steps
-
----
-
-### 2. State Management (Zustand)
-
-Global state is managed using Zustand:
-
-* `nodes` → all workflow nodes
-* `edges` → connections between nodes
-* `selectedNode` → currently active node
-
-This allows:
-
-* centralized state
-* predictable updates
-* clean separation from UI
-
----
-
-### 3. Data Flow
-
-```text
-User Action (drag/click)
-        ↓
-Event Handler (onDrop / onNodeClick)
-        ↓
-State Update (Zustand store)
-        ↓
-React Flow re-renders UI
-```
-
----
-
-### 4. Node Creation Flow
-
-```text
-Drag from sidebar
-    ↓
-Drop on canvas
-    ↓
-Create node with default data
-    ↓
-Add to global state
-    ↓
-Render via React Flow
-```
-
----
-
-## ⚙️ Tech Stack
-
-* **Frontend:** React (Vite + TypeScript)
-* **Graph Engine:** React Flow (@xyflow/react)
-* **State Management:** Zustand
-* **Styling:** Tailwind CSS
-* **API Layer:** Mock API (local abstraction)
-
----
-
-## ▶️ How to Run
+### Steps
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
+---
+
+## Design Decisions
+
+### 1. React Flow for Workflow Canvas
+
+React Flow provides built-in support for:
+
+* Node-based UI
+* Edge connections
+* Zooming, panning, and minimap
+
+This allows rapid development of a graph-based workflow system.
 
 ---
 
-## 🧪 Design Decisions
+### 2. Zustand for State Management
 
-### Why React Flow?
-
-Provides built-in support for:
-
-* node-based UI
-* edge connections
-* zoom/pan controls
-
----
-
-### Why Zustand?
+Zustand was chosen because:
 
 * Lightweight and simple
-* Avoids prop drilling
-* Better suited for global graph state
+* Avoids deeply nested props
+* Suitable for managing global graph state (nodes, edges, selected node)
 
 ---
 
-### Why TypeScript?
+### 3. TypeScript for Type Safety
 
-* Ensures type safety for node data
-* Improves maintainability and scalability
+TypeScript ensures:
 
----
-
-## ⚠️ Assumptions
-
-* No backend persistence required (as per assignment)
-* Mock APIs simulate real backend behavior
-* Workflow validation is basic and can be extended
+* Strong typing of workflow nodes
+* Better maintainability
+* Reduced runtime errors
 
 ---
 
-## 🚀 Future Improvements
+### 4. Modular Component Design
 
-* Graph validation (cycle detection, disconnected nodes)
+The UI is broken into independent components:
+
+* WorkflowCanvas
+* NodePalette (Sidebar)
+* NodeFormPanel (Configuration)
+* SimulationPanel
+
+This makes the system extensible and easier to maintain.
+
+---
+
+### 5. Mock API Layer
+
+A mock API layer is used to simulate backend behavior:
+
+* `GET /automations` → fetch available automated actions
+* `POST /simulate` → simulate workflow execution
+
+---
+
+## What I Completed
+
+* Drag-and-drop workflow canvas using React Flow
+* Custom node types (Start, Task, Approval, Automated, End)
+* Node configuration panel with dynamic forms
+* Global state management using Zustand
+* Mock API integration for automations and simulation
+* Workflow simulation panel displaying execution steps
+* Clean and modular project structure
+
+**Note:** This project was developed with the help of online resources, AI tools and documentation. I focused on understanding core concepts such as React Flow, state management, and component architecture, and ensured that I can explain, modify, and extend every part of the system.
+---
+
+## What I Would Add With More Time
+
+* Graph validation:
+
+  * Ensure Start node is first
+  * Detect disconnected nodes or cycles
 * Export/Import workflows as JSON
 * Undo/Redo functionality
-* Enhanced simulation with detailed logs
-* Role-based access for approvals
-
----
-
-## 📌 Conclusion
-
-This project demonstrates:
-
-* Strong understanding of **React architecture**
-* Ability to work with **graph-based systems**
-* Clean **state management and component design**
-* Practical handling of **dynamic forms and APIs**
+* Improved simulation visualization (timeline-based UI)
+* Node templates for reusable workflows
+* Enhanced error handling and user feedback
 
 ---
